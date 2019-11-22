@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <!--    #FF0000 Red1-->
+    <!--    #00008B	 Black-->
+    <!--    #483D8B DarkBlue-->
+    <!--    表头支持颜色 -->
+    <!--    数据部分 只支持满足条件的 字体变色 背景变色-->
+    <F00001>
+        <filesName>动态表头</filesName>
+        <tableName>名单分配</tableName>
+        <sheetName>名单分配</sheetName>
+        <type>2</type>  <!-- 表头的类型  类型为1  <flexHead>为空   类型为2  <flexHead>不为空 -->
+        <headRowCount>2</headRowCount>  <!-- 表头的总行数 -->
+        <firstHead>report_day</firstHead>  <!-- 首列表头 -->
+        <flexHead>emp_name</flexHead>      <!-- 动态表头 -->
+        <structure>
+            <report_day name="日期" fillColor='#FFFF00' fontColor='#00008B'></report_day>
+            <other name="其他" fillColor='#483D8B' fontColor='#00008B'></other>
+<!--            驼峰命名-->
+            <emp_name name="分配人" fontColor='#00008B'>
+                <first_follow_rate name="首次跟进" fontColor='#00008B' ifSymbol="&lt;" ifTarget="2"
+                                   changeDataFontColor='#FFFF00' changeDataFillColor='#FF0000' dataFontColor='#FFB6C1' dataFillColor='#FF0000'></first_follow_rate>
+                <second_follow_rate name="二次跟进" ifSymbol="&lt;" ifTarget="2"
+                                    changeDataFontColor='#FF0000' changeDataFillColor='#FFFF00'></second_follow_rate>
+                <thirdly_follow_rate name="三次跟进" ifSymbol="&lt;" ifTarget="2"
+                                     changeDataFontColor='#FF0000' changeDataFillColor='#FFFF00'></thirdly_follow_rate>
+            </emp_name>
+        </structure>
+        <structureExt>
+            <total name="总计" fillColor='#FFB6C1' dataFillColor='#FF0000' precision="0.00"></total>
+            <average name="平均值" fillColor='#FFDEAD'  dataFillColor='#000080' precision="0.00" percent="0.00%"></average>
+        </structureExt>
+        <data>
+            <mapper>exportAllMapper</mapper>>
+            <method db="MYSQL">selectFollowRate</method>>
+            <methodExt db="MYSQL">selectFollowRateExt</methodExt>>
+        </data>
+    </F00001>
+    <F00002>
+        <filesName>两层表头</filesName>
+        <tableName>名单分配</tableName>
+        <type>1</type>  <!-- 表头的类型 -->
+        <headRowCount>2</headRowCount>  <!-- 表头的总行数 -->
+        <firstHead>report_day</firstHead>  <!-- 首列表头 -->
+        <structure>
+            <report_day name="日期" fillColor='#FFFF00' fontColor='#00008B'></report_day>
+            <other name="其他" fillColor='#483D8B' fontColor='#00008B'></other>
+            <test01 name="跟进情况" fontColor='#00008B'>
+                <first_follow_rate name="首次跟进" fontColor='#00008B' ifSymbol="&lt;" ifTarget="50%"
+                                   changeDataFontColor='#FF0000' changeDataFillColor='#FFC0CB'></first_follow_rate>
+                <second_follow_rate name="二次跟进" fontColor='#00008B' ifSymbol="&lt;" ifTarget="50%"
+                                    changeDataFontColor='#FF0000' changeDataFillColor='#FFC0CB'></second_follow_rate>
+                <thirdly_follow_rate name="三次跟进" fontColor='#00008B' ifSymbol="&lt;" ifTarget="50%"
+                                     changeDataFontColor='#FF0000' changeDataFillColor='#FFC0CB'></thirdly_follow_rate>
+            </test01>
+        </structure>
+        <structureExt>
+            <total name="总计" fillColor='#FFB6C1'></total>
+        </structureExt>
+        <data>
+            <mapper>exportAllMapper</mapper>>
+            <method db="MYSQL">selectFollowRate</method>>
+            <methodExt db="MYSQL">selectFollowRateExt</methodExt>>
+        </data>
+    </F00002>
+
+    <F00003>
+        <filesName>最简单的固定表头</filesName>
+        <tableName>名单分配</tableName>
+        <type>1</type>  <!-- 表头的类型 -->
+        <headRowCount>1</headRowCount>  <!-- 表头的总行数 -->
+        <firstHead>report_day</firstHead>  <!-- 首列表头 -->
+        <structure>
+            <report_day name="日期" fillColor='#FF0000' fontColor='#00008B'></report_day>
+            <other name="其他" fillColor='#DA70D6' fontColor='#00FFFF'></other>
+            <first_follow_rate name="首次跟进" ifSymbol="&lt;" ifTarget="2" changeDataFontColor='#FF0000'
+                               changeDataFillColor='#FF0000'></first_follow_rate>
+            <second_follow_rate name="二次跟进" ifSymbol="&lt;" ifTarget="2"
+                                changeDataFontColor='#FF0000'></second_follow_rate>
+            <thirdly_follow_rate name="三次跟进" ifSymbol="&lt;" ifTarget="2"
+                                 changeDataFontColor='#FF0000'></thirdly_follow_rate>
+        </structure>
+        <structureExt>
+            <total name="总计" fillColor='#FFB6C1'></total>
+            <average name="平均值" fillColor='#FFB6C1'></average>
+        </structureExt>
+        <data>
+            <mapper>exportAllMapper</mapper>>
+            <method db="MYSQL">selectFollowRate</method>>
+            <methodExt db="MYSQL">selectFollowRateExt</methodExt>>
+        </data>
+    </F00003>
+    <!--    沟通备注-->
+</root>
